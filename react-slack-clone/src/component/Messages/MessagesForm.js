@@ -56,15 +56,16 @@ class MessagesForm extends React.Component{
     }
 
     render(){
-        const { errors } = this.state;
+        const { errors, message, loading } = this.state;
         return(
             <Segment className="messsage__form">
                 <Input fluid name="message" onChange={this.handleChange} style={{marginBottom: '0.7em'}} label={<Button icon={"add"}/>} labelPosition="left" 
                 className={
                     errors.some(error => error.message.includes('message')) ? 'error' : ''
-                } placeholder="Write your message" />
+                } placeholder="Write your message"
+                value={message} />
                 <Button.Group icon widths="2"  >
-                    <Button color="orange" content="Add Reply" labelPosition="left" icon="edit" onClick={this.sendMessage}/>
+                    <Button color="orange" content="Add Reply" labelPosition="left" icon="edit" onClick={this.sendMessage} disabled={loading}/>
                     <Button color="teal" content="Upload Media" labelPosition="right" icon="cloud upload"/>
                 </Button.Group>
             </Segment>
